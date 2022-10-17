@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flais-auth-forward-simple-test-service
+  labels:
+    app: flais-auth-forward-simple-test-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flais-auth-forward-simple-test-service
+  template:
+    metadata:
+      labels:
+        app: flais-auth-forward-simple-test-service
+    spec:
+      containers:
+        - name: flais-auth-forward-simple-test-service
+          image: ghcr.io/fintlabs/flais-auth-forward-simple-test-service:sha-61bbf46
+          ports:
+            - containerPort: 8080
+              protocol: TCP

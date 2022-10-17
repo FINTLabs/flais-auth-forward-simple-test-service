@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: flais-auth-forward-simple-test-service
+  labels:
+    app: flais-auth-forward-simple-test-service
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`forward-auth-test.fintlabs.no`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: flais-auth-forward-simple-test-service
+          port: 8080
+      middlewares:
+        - name: flais-auth-forward
